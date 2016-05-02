@@ -1,0 +1,17 @@
+<h2>Welcome to our store</h2>
+
+<div class="row">
+	<% products.each do |product| %>
+	<div class="col-md-4">
+		<div class="well center-it">
+			<p><%= image_tag product.image.url %></p>
+			<h3><%= link_to product.name, product %></h3>
+			<p><% number_to_currency product.price %></p>
+			<p>
+				<a href="#">
+					<span class="glyphicon glyphicon-plus"></span> Quick Info </a>
+			</p>
+		</div>
+	</div>
+	<% end %>
+</div>
