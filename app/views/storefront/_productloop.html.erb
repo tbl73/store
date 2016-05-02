@@ -1,0 +1,39 @@
+<div class="row">
+	<% @products.each do |product| %>
+	<div class="col-md-3">
+		<div class="well text-center">
+			<p><%= image_tag product.image.url, width: "100" %></p>
+			<h3><%= link_to product.name, product %></h3>
+			<p><% number_to_currency product.price %></p>
+			<p>
+				<a href="#" data-toggle="modal" data-target="#myModal_<%= product.id %>" >
+					<span class="glyphicon glyphicon-plus"></span> Quick Info </a>
+			</p>
+		</div>
+	</div>
+
+<!-- Modal in loop to make one for each item -->
+	<div class="modal fade" id="myModal_<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+        	<%= link_to product.name, product %></h4>
+      </div>
+      <div class="modal-body">
+        <p><%= product.brand %></p>
+      	<p><%= number_to_currency product.price %></p>
+        <p><%= image_tag product.image.url, width: "50" %></p>
+        <p><%= product.description %></p>
+      </div>
+      <div class="modal-footer">
+    
+        <button type="button" class="btn btn-info">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<% end %>
+</div>
+
