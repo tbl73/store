@@ -1,12 +1,12 @@
 <h2>My Cart</h2>
 
 <div>
-	<% @line_items.each do |line_item| %>
+	<% @line_items.each_with_index do |line_item, index| %>
 		<h4><%= line_item.product.name %></h4>
 		<ul>
 			<li><%= number_to_currency line_item.product.price %></li>
-			<li id="li_qty">Qty: <%= line_item.quantity %> </li>
-			<li id="edit_qty" style="display:none;">
+			<li id="li_qty_<%= index %>">Qty: <%= line_item.quantity %> </li>
+			<li id="edit_qty_<%= index %>" class="invisible">
 				<%= form_tag(edit_line_item_path) do %>
 					<%= number_field_tag :quantity, line_item.quantity %>
 					<%= hidden_field_tag :id, line_item.id %>
@@ -16,9 +16,19 @@
 			<li>Subtotal: <%= number_to_currency line_item.line_item_total %></li>
 		</ul>
 		<p>
-			<button class= "btn btn-warning" id="edit_btn">Edit</button>
+			<button class= "btn btn-warning" id="edit_btn_<%= index %>">Edit</button>
 			<%= link_to "Remove from Cart", remove_from_cart_path(id: line_item.id), class: "btn btn-danger" %>
 		</p>
+
+		<script>
+		$(document).ready(function(){
+			$('#edit_btn_<%= index %>').click(function(){
+				$('#li_qty_<%= index %>').addClass("invisible");
+				$('#edit_qty_<%= index %>').removeClass("invisible");
+			})
+		})
+		</script>
+
 	<% end %>
 </div>
 
