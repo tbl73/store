@@ -42,6 +42,10 @@
           </li>
         </ul>
           <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? && current_user.role == "admin" %>
+              <li><%= link_to "User Admin", users_path %></li>
+
+            <% end %>
           	<li><%= link_to view_order_path do %>
               <i class="fa fa-shopping-cart" aria-hidden="true"></i> View Cart
               <% end %> 

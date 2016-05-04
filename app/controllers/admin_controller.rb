@@ -3,7 +3,7 @@ class AdminController < ApplicationController
 	before_filter :authenticate_user!
 
   def users
-  	@users = User.order(:name)
+  	@users = User.all
 
   	if params[:promotion] == "up"
   		user = User.find(params[:id])
