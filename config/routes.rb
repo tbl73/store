@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users' => "admin#users"
+
   post 'add_to_cart' => 'cart#add_to_cart'
 
   get 'view_order' => 'cart#view_order'
@@ -7,6 +9,8 @@ Rails.application.routes.draw do
   get 'checkout' => 'cart#checkout'
 
   get 'remove_from_cart' => 'cart#remove_from_cart'
+
+  post 'order_complete' => 'cart#order_complete'
 
   post 'edit_line_item' => 'cart#edit_line_item'
 

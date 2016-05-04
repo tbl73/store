@@ -18,6 +18,9 @@ gem 'devise'
 gem 'carrierwave'
 gem 'cancancan'
 gem 'font-awesome-rails'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'figaro'
+gem 'certified'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

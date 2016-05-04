@@ -1,0 +1,21 @@
+<% if current_user.role == "admin" %>
+
+	<h2>User Administration</h2>
+
+	<% @users.each do |user| %>
+		<p>
+			<%= user.email %>
+			<%= user.role %>
+
+			<% if user.role == "guest" %>
+			<%= link_to "Make Administrator", users_path(id: user.id, promotion: "up"), class: "btn btn-warning" %>
+			<% else %>
+				<%= link_to "Make Guest", users_path(id: user.id, promotion: "down"), class: "btn btn-danger" %>
+				<% end %>
+		</p>
+	<% end %>
+
+<% else %>
+	<h2>Employees Only</h2>
+
+<% end %>
