@@ -42,9 +42,14 @@
           </li>
         </ul>
           <ul class="nav navbar-nav navbar-right">
-          	<li><%= link_to "View Cart", view_order_path %></li>
+          	<li><%= link_to view_order_path do %>
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i> View Cart
+              <% end %> 
+            </li>
        		 <% if user_signed_in? %>
-            <li><%= link_to "Edit Profile", edit_user_registration_path %> </li>
+            <li><%= link_to "Edit Profile", edit_user_registration_path %> 
+
+            </li>
             <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
             <% else %>
             	<li><%= link_to "Sign In", new_user_session_path %></li>

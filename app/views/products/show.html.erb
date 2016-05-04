@@ -1,12 +1,21 @@
 <h3 id="notice"><%= notice %></h3>
 
 <div class="row">
+
+<% if can? :update, Product %>
+  <p class="pull-right"><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-info" %>
+  <%= link_to 'Product Index', products_path, class: "btn btn-info" %></p>
+<% elsif can? :show, Product %>
+  <p><%= link_to "Back", :back, class: "btn btn-info" %></p>
+ <% end %>
+</div>
+
   <div class="col-md-5 col-md-offset-1">
     <p>
       <%= image_tag @product.image.url, width: "300", alt: @product.name %>
     </p>
   </div>
-  <div class="col-md-6 lower-wording">
+  <div class="col-md-6">
     <p>
       <%= @product.name %> by  <%= @product.brand %>
     </p>
@@ -30,9 +39,11 @@
       <%= @product.category.name %>
     </p>
 
-  </div>
-
-    <p class="pull-right"><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-info" %>
-    <%= link_to 'Back', products_path, class: "btn btn-info" %></p>
-</div>
+    <p>
+      <%= form_tag add_to_cart_path do %>
+        <%= hidden_field_tag :product_id, @product.id %>
+        <%= number_field_tag :quantity, nil, placeholder: "How many?" %>
+        <%= submit_tag "Add to Cart", class: "btn btn-primary" %>
+      <% end %>
+    </p>
 

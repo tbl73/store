@@ -5,6 +5,8 @@ class Ability
     # Define abilities for the passed in user here. For example:
     if user.admin?
         can :manage, Product
+    elsif user.guest?
+        can :show, Product
     end
 
     #

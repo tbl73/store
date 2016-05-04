@@ -16,7 +16,7 @@ class CartController < ApplicationController
   	  	line_item.line_item_total = line_item.quantity * line_item.product.price
 		  	line_item.save
 
-		  	redirect_to root_path
+		  	redirect_to view_order_path
   		end
   end
 
